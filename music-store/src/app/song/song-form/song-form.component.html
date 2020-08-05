@@ -1,0 +1,26 @@
+
+<h3>Add a song</h3>
+<div>
+  <form class="example-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="title" name="title">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Artist</mat-label>
+      <input matInput [(ngModel)]="artist" name="artist">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Genre</mat-label>
+      <mat-select [(ngModel)]="selectedGenre" name="genre">
+        <mat-option *ngFor="let genre of genres" [value]="genre">
+          {{genre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <button *ngIf="isFormFilled()" (click)="submit()" mat-raised-button color="primary">Submit</button>
+
+</div>

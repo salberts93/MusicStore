@@ -1,0 +1,39 @@
+<mat-form-field>
+  <mat-label>Search by artist</mat-label>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Name..." #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+      <mat-cell *matCellDef="let song"> {{song.title}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="artist">
+      <mat-header-cell *matHeaderCellDef> Artist </mat-header-cell>
+      <mat-cell *matCellDef="let song"> {{song.artist}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="genre">
+      <mat-header-cell *matHeaderCellDef> Genre </mat-header-cell>
+      <mat-cell *matCellDef="let song"> {{song.genre}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dateAdded">
+      <mat-header-cell *matHeaderCellDef> Date added </mat-header-cell>
+      <mat-cell *matCellDef="let song"> {{song.dateAdded | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let song">   
+        <button (click)="delete(song.id)" mat-raised-button color="warn">Delete</button>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</div>
